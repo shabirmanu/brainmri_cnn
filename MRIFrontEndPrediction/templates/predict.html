@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h2>Brain Tumor Detection from BRAIN MRI Images using CNN</h2>
+    <p>This is a small web page to load the trained model, upload user image and predict whether it is normal or abnormal
+    </p>
+
+    <div class="form-wrapper">
+    <h3 class="page-title">Upload Image for Prediction</h3>
+        <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+
+
+            <div class="form-group row">
+               <div class="col-sm-10">
+                <div class="col-sm-5">
+                    Upload: <input type=file name=file>
+                </div>
+            </div>
+          </div>
+
+
+       <button type="submit" name="save_tasks" class="btn btn-primary">Predict</button>
+
+        </form>
+
+        {% if prediction is defined %}
+              <h3>Prediction Summary</h3>
+            <table class="table table-stripped">
+                       <tr>
+                            <th>Image</th>
+                            <th>Normal Probability</th>
+                            <th>Abnormal Probability</th>
+                            <th>Remarks</th>
+
+                       </tr>
+                       <tr>
+                           <td><img src="static/images/{{ filename }}" width="150" height="150" alt="" /></td>
+                           <td>{{ prediction[0][0] }}</td>
+                           <td>{{ prediction[0][1] }}</td>
+                           <td>{% if prediction[0][0] >  prediction[0][1] %}
+                               Normal
+                           {% else %}
+                               Abnormal
+                           {% endif %} </td>
+                       </tr>
+
+          </table>
+
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}

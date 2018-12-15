@@ -1,0 +1,5 @@
+1. The data was small about 71 images in total. I augemented the data and made the set relatively larger to improve the accuracy
+
+2. The structure of this directory should not be altered for the correct working of the application.
+
+3. features.csv is the features that we got using Matlab DWT. 
